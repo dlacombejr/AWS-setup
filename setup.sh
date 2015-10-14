@@ -35,6 +35,9 @@ sudo apt-get install -y cuda
 # update the path to include cuda nvcc and ld_library_path
 echo -e "\nexport PATH=/usr/local/cuda/bin:$PATH\n\nexport LD_LIBRARY_PATH=/usr/local/cuda/lib64" >> .bashrc  
 
+# configure theano to use gpu by default
+echo -e "\n[global]\nfloatX=float32\ndevice=gpu\n[mode]=FAST_RUN\n\n[lib]\ncnmem=0.9\n\n[nvcc]\nfastmath=True\n\n[cuda]\nroot=/usr/local/cuda" >> ~/.theanorc 
+
 # reboot the system for cuda to load
 sudo reboot  
 
