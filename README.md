@@ -72,17 +72,13 @@ After starting up a GPU instance (g2.2xlarge / g2.8xlarge) and secure shelling i
 		s3fs mybucket /home/ubuntu/s3 -o passwd_file=/home/ubuntu/AWS_setup/passwd.txt -d -d -f -o f2 -o curldbg
 		```
 
-	[s3fs-fuse source](https://github.com/s3fs-fuse/s3fs-fuse/wiki/Installation-Notes)
-
-	[Howto - Setup s3fs on Ubuntu 11.04 x64](http://www.pophams.com/blog/howto-setups3fsonubuntu1104x64)
-
 5. Save the instance as an image
 
 6. Pull remote repository from Github and watch your code fun faster!
 
 ---
 
-Special thanks to the following posts!
+Special thanks to the following posts/repositories!
 	
 [How to install Theano on Amazon EC2 GPU instances for deep learning](http://markus.com/install-theano-on-aws/)
 
@@ -91,3 +87,7 @@ Special thanks to the following posts!
 [Install Caffe on EC2 from scratch (Ubuntu, CUDA 7, cuDNN)](https://github.com/BVLC/caffe/wiki/Install-Caffe-on-EC2-from-scratch-(Ubuntu,-CUDA-7,-cuDNN))
 
 [From instance launch to model accuracy: an AWS/Theano walkthrough](http://blog.eduardovalle.com/2015/08/07/aws-theano-walkthrough/)
+
+[s3fs-fuse source](https://github.com/s3fs-fuse/s3fs-fuse/wiki/Installation-Notes)
+
+[Howto - Setup s3fs on Ubuntu 11.04 x64](http://www.pophams.com/blog/howto-setups3fsonubuntu1104x64)
