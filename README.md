@@ -3,38 +3,69 @@
 After starting up a GPU instance (g2.2xlarge / g2.8xlarge) and secure shelling into it:
 
 1. Install Git and pull AWS-setup repository
-
+	```
 	sudo apt-get --assume-yes install git
 	mkdir AWS_setup
 	cd AWS_setup
 	git init
 	git pull https://github.com/dlacombejr/AWS-setup
 	cd ..
-
+	```
 2. Install most of the dependencies
-
+	```
 	chmod +x AWS_setup/setup.sh
 	Yes | AWS_setup/setup.sh
-
+	```
     wait a few seconds for reboot...
 
 3. Install cuDNN 
 	    
 	1. Download cuDNN after registering as a GPU Computing & Embedded Developer at NIVIDIA
 	2. Upload the compressed file from local computer to the instance
-		Convention (using Public DNS):
+		-Convention (using Public DNS):
+			```
 			scp -i ~/key_location/key.pem ~/cuDNN_file_location/cudnn-7.0-linux-x64-v3.0-prod.tgz ubuntu@ec2-XX-XX-XXX-XX.compute-1.amazonaws.com:~/.
-		Example:
+			```
+		-Example:
+			```
 			scp -i dan-key-pair-useast.pem ~/Documents/research/AWS/utilites/cudnn-7.0-linux-x64-v3.0-prod.tgz ubuntu@ec2-52-91-177-35.compute-1.amazonaws.com:~/.
+			```
 	3. Unpack the library on the instance
+		```
 		tar -zxf cudnn-7.0-linux-x64-v3.0-prod.tgz
+		```
 	4. Copy the library files into CUDA's include and lib folders on the instance
+		```
 		sudo cp cuda/include/cudnn.h /usr/local/cuda-7.5/include
 		sudo cp cuda/lib64/libcudnn* /usr/local/cuda-7.5/lib64
+		```
 
-4. Save the instance as an image
+4. Setup s3fs for Amazon S3 as a local file-system
 
-5. Pull remote repository from Github and watch your code fun faster!
+	1. Get dependencies and s3fs:
+		```
+		sudo apt-get install automake autotools-dev g++ git libcurl4-gnutls-dev libfuse-dev libssl-dev libxml2-dev make pkg-config
+		git clone https://github.com/s3fs-fuse/s3fs-fuse.git
+		cd s3fs-fuse
+		./autogen.sh
+		./configure
+		make
+		sudo make install
+		```
+
+	2. Fuse S3 into remote directory:
+		```
+		mkdir s3
+		echo MYIDENTITY:MYCREDENTIAL > /home/ubuntu/AWS_setup/passwd.txt
+		s3fs mybucket /home/ubuntu/s3 -o passwd_file=/home/ubuntu/AWS_setup/passwd.txt -d -d -f -o f2 -o curldbg
+		```
+
+	[s3fs-fuse source](https://github.com/s3fs-fuse/s3fs-fuse/wiki/Installation-Notes)
+	[Howto - Setup s3fs on Ubuntu 11.04 x64](http://www.pophams.com/blog/howto-setups3fsonubuntu1104x64)
+
+5. Save the instance as an image
+
+6. Pull remote repository from Github and watch your code fun faster!
 
 ---
 
