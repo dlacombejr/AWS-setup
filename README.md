@@ -69,6 +69,7 @@ After starting up a GPU instance (g2.2xlarge / g2.8xlarge) and secure shelling i
 		```
 		mkdir s3
 		echo MYIDENTITY:MYCREDENTIAL > /home/ubuntu/AWS_setup/passwd.txt
+		chmod 600 ~/AWS_setup/passwd.txt
 		s3fs mybucket /home/ubuntu/s3 -o passwd_file=/home/ubuntu/AWS_setup/passwd.txt -d -d -f -o f2 -o curldbg
 		```
 
