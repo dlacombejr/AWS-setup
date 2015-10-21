@@ -26,13 +26,13 @@ After starting up a GPU instance (g2.2xlarge / g2.8xlarge) and secure shelling i
 	    
 	1. Download cuDNN after registering as a GPU Computing & Embedded Developer at NIVIDIA
 	2. Upload the compressed file from local computer to the instance
-		*Convention (using Public DNS):
+		- Convention (using Public DNS):
 
 			```
 			scp -i ~/key_location/key.pem ~/cuDNN_file_location/cudnn-7.0-linux-x64-v3.0-prod.tgz ubuntu@ec2-XX-XX-XXX-XX.compute-1.amazonaws.com:~/.
 			```
 
-		*Example:
+		- Example:
 
 			```
 			scp -i dan-key-pair-useast.pem ~/Documents/research/AWS/utilites/cudnn-7.0-linux-x64-v3.0-prod.tgz ubuntu@ec2-52-91-177-35.compute-1.amazonaws.com:~/.
@@ -73,7 +73,7 @@ After starting up a GPU instance (g2.2xlarge / g2.8xlarge) and secure shelling i
 		```
 
 	[s3fs-fuse source](https://github.com/s3fs-fuse/s3fs-fuse/wiki/Installation-Notes)
-	
+
 	[Howto - Setup s3fs on Ubuntu 11.04 x64](http://www.pophams.com/blog/howto-setups3fsonubuntu1104x64)
 
 5. Save the instance as an image
