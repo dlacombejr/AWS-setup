@@ -51,7 +51,7 @@ After starting up a GPU instance (g2.2xlarge / g2.8xlarge) and secure shelling i
 		sudo cp cuda/lib64/libcudnn* /usr/local/cuda-7.5/lib64
 		```
 
-4. Setup s3fs for Amazon S3 as a local file-system
+<!-- 4. Setup s3fs for Amazon S3 as a local file-system
 
 	1. Get dependencies and s3fs:
 
@@ -71,7 +71,30 @@ After starting up a GPU instance (g2.2xlarge / g2.8xlarge) and secure shelling i
 		echo MYIDENTITY:MYCREDENTIAL > /home/ubuntu/AWS_setup/passwd.txt
 		chmod 600 ~/AWS_setup/passwd.txt
 		s3fs mybucket /home/ubuntu/s3 -o passwd_file=/home/ubuntu/AWS_setup/passwd.txt -d -d -f -o f2 -o curldbg
+		``` -->
+
+4. Setup access credentials for `boto`:
+
+	1. Install `boto`:
+
 		```
+		pip install boto
+		```
+
+	2. Create site-wide credential settings:
+
+		```
+		sudo vi /ect/boto.cfg
+		```
+		- Paste in the following using the credentials:
+
+		```
+		[Credentials]
+		aws_access_key_id = <your_access_key_here>
+		aws_secret_access_key = <your_secret_key_here>
+		```
+ 
+		- Save and exit (escape followed by `:wq`)
 
 5. Save the instance as an image
 
@@ -89,6 +112,8 @@ Special thanks to the following posts/repositories!
 
 [From instance launch to model accuracy: an AWS/Theano walkthrough](http://blog.eduardovalle.com/2015/08/07/aws-theano-walkthrough/)
 
-[s3fs-fuse source](https://github.com/s3fs-fuse/s3fs-fuse/wiki/Installation-Notes)
+<!-- [s3fs-fuse source](https://github.com/s3fs-fuse/s3fs-fuse/wiki/Installation-Notes)
 
-[Howto - Setup s3fs on Ubuntu 11.04 x64](http://www.pophams.com/blog/howto-setups3fsonubuntu1104x64)
+[Howto - Setup s3fs on Ubuntu 11.04 x64](http://www.pophams.com/blog/howto-setups3fsonubuntu1104x64) -->
+
+[boto: A Python interface to Amazon Web Services](http://boto.readthedocs.org/en/latest/)
